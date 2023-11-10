@@ -5,11 +5,13 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InsuranceCoreService.API", "InsuranceCoreService.API\InsuranceCoreService.API.csproj", "{03C7CE9F-EAA0-4AFD-8D4C-D868CA9F814E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsuranceCoreService.Domain", "InsuranceCoreService.Domain\InsuranceCoreService.Domain.csproj", "{BC100BF5-1325-4EC5-B54F-D0A67198C6E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InsuranceCoreService.Domain", "InsuranceCoreService.Domain\InsuranceCoreService.Domain.csproj", "{BC100BF5-1325-4EC5-B54F-D0A67198C6E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsuranceCoreService.Infrastructure", "InsuranceCoreService.Infrastructure\InsuranceCoreService.Infrastructure.csproj", "{88496DD1-08A9-42D9-9076-4FDC6981A230}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InsuranceCoreService.Infrastructure", "InsuranceCoreService.Infrastructure\InsuranceCoreService.Infrastructure.csproj", "{88496DD1-08A9-42D9-9076-4FDC6981A230}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InsuranceCoreService.Tests", "InsuranceCoreService.Tests\InsuranceCoreService.Tests.csproj", "{BB901F29-25D0-4D9A-AF2D-89CA2D4DF493}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InsuranceCoreService.Tests", "InsuranceCoreService.Tests\InsuranceCoreService.Tests.csproj", "{BB901F29-25D0-4D9A-AF2D-89CA2D4DF493}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InsuranceCoreService.Services", "InsuranceCoreService.Services\InsuranceCoreService.Services.csproj", "{FD83CDC5-BD8C-459B-AEBD-C72AADF3D337}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{BB901F29-25D0-4D9A-AF2D-89CA2D4DF493}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB901F29-25D0-4D9A-AF2D-89CA2D4DF493}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB901F29-25D0-4D9A-AF2D-89CA2D4DF493}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD83CDC5-BD8C-459B-AEBD-C72AADF3D337}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD83CDC5-BD8C-459B-AEBD-C72AADF3D337}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD83CDC5-BD8C-459B-AEBD-C72AADF3D337}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD83CDC5-BD8C-459B-AEBD-C72AADF3D337}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

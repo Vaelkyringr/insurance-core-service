@@ -2,4 +2,10 @@
 
 public class InsuranceService
 {
+    
+
+    public InsuranceService()
+    {
+
+    }
 }
