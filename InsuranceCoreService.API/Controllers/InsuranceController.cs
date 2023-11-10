@@ -1,5 +1,7 @@
 ﻿namespace InsuranceCoreService.API.Controllers;
 
+[ApiController]
+[Route("[controller]")]
 public class InsuranceController : ControllerBase
 {
     private readonly ILogger<InsuranceController> _logger;
@@ -9,9 +11,9 @@ public class InsuranceController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet(Name = "GetInsuranceByIdAsync")]
-    public IEnumerable<WeatherForecast> Get()
+    [HttpGet("GetInsuranceByIdAsync")]
+    public async Task<InsuranceGetDto> GetInsuranceByIdAsync()
     {
-        return new List<WeatherForecast>();
+        return new InsuranceGetDto();
     }
 }
