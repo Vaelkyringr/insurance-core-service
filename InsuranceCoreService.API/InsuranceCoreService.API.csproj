@@ -14,4 +14,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\InsuranceCoreService.Domain\InsuranceCoreService.Domain.csproj" />
+    <ProjectReference Include="..\InsuranceCoreService.Infrastructure\InsuranceCoreService.Infrastructure.csproj" />
+    <ProjectReference Include="..\InsuranceCoreService.Services\InsuranceCoreService.Services.csproj" />
+  </ItemGroup>
+
 </Project>
