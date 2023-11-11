@@ -2,7 +2,5 @@
 
 public class Insurance
 {
-    public Insurance()
-    {
-    }
+    public string InsuranceNumber { get; set; }
 }
