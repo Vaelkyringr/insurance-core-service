@@ -19,10 +19,14 @@ public class InsuranceController : ControllerBase
     public async Task<InsuranceGetDto> GetInsuranceByIdAsync(int insuranceId)
     {
         _logger.LogInformation("HTTP request received with id {InsuranceId}", insuranceId);
-
-        
         var insurance = await _insuranceService.GetInsuranceByIdAsync(insuranceId);
 
         return _mapper.Map<InsuranceGetDto>(insurance);
+    }
+
+    [HttpPost("CreateInsuranceAsync")]
+    public async Task<InsurancePostDto> CreateInsuranceAsync([FromBody] InsurancePostDto dto)
+    {
+        return new InsurancePostDto();
     }
 }
