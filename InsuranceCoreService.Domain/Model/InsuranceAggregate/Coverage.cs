@@ -9,7 +9,7 @@ public class Coverage
         _coverageType = coverageType;
     }
 
-    public decimal GetBaseCoverageCost()
+    public decimal GetYearlyBaseCoverageCost()
     {
         return _coverageType switch
         {
