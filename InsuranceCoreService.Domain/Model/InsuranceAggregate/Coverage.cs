@@ -2,16 +2,16 @@
 
 public class Coverage
 {
-    private readonly CoverageType _coverageType;
-
     public Coverage(CoverageType coverageType)
     {
-        _coverageType = coverageType;
+        CoverageType = coverageType;
     }
+
+    private CoverageType CoverageType { get; }
 
     public decimal GetYearlyBaseCoverageCost()
     {
-        return _coverageType switch
+        return CoverageType switch
         {
             CoverageType.Home => 200,
             CoverageType.Life => 1500,

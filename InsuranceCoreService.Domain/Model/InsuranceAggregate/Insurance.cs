@@ -2,46 +2,26 @@
 
 public class Insurance
 {
-    private readonly InsuranceId _id;
-    private decimal _yearlyPremium;
-    private readonly Coverage _coverage;
-    private readonly string _insuranceNumber;
-
     public Insurance(string insuranceNumber, decimal premium, Coverage coverages)
     {
-        _id = new InsuranceId();
-        _yearlyPremium = premium;
-        _coverage = coverages;
-        _insuranceNumber = insuranceNumber;
+        Id = new InsuranceId();
+        YearlyPremium = premium;
+        Coverage = coverages;
+        InsuranceNumber = insuranceNumber;
     }
+
+    private InsuranceId Id { get; }
     
-    public Guid GetInsuranceId()
-    {
-        return _id.GetValue();
-    }
+    private decimal YearlyPremium { get; set; }
+    
+    private decimal MonthlyPremium => YearlyPremium / 12;
 
-    public string GetInsuranceNumber()
-    {
-        return _insuranceNumber;
-    }
-
-    public decimal GetYearlyPremium()
-    {
-        return Math.Round(_yearlyPremium, 2);
-    }
-
-    public decimal GetMonthlyPremium()
-    {
-        return Math.Round(_yearlyPremium / 12);
-    }
-
-    public Coverage GetCoverage()
-    {
-        return _coverage;
-    }
+    private Coverage Coverage { get; set; }
+    
+    private string InsuranceNumber { get; set; }
 
     public void CalculatePremium()
     {
-        _yearlyPremium += _coverage.GetYearlyBaseCoverageCost();
+        YearlyPremium += Coverage.GetYearlyBaseCoverageCost();
     }
 }
