@@ -12,5 +12,5 @@ public class InsuranceDbContext : DbContext
 		optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=Insurance;Trusted_Connection=true;TrustServerCertificate=true");
 	}
 
-	public DbSet<Insurance> Insurances { get; set; }
+	public DbSet<Entities.Insurance> Insurances { get; set; }
 }
