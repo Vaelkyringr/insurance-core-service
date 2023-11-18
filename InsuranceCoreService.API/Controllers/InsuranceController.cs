@@ -1,32 +1,31 @@
-﻿namespace InsuranceCoreService.API.Controllers;
+﻿using InsuranceCoreService.API.Queries;
+using MediatR;
+
+namespace InsuranceCoreService.API.Controllers;
 
 [ApiController]
 [Route("[controller]")]
 public class InsuranceController : ControllerBase
 {
-    private readonly IMapper _mapper;
-    private readonly IInsuranceService _insuranceService;
+    private readonly IMediator _mediator;
     private readonly ILogger<InsuranceController> _logger;
 
-    public InsuranceController(ILogger<InsuranceController> logger, IInsuranceService insuranceService, IMapper mapper)
+    public InsuranceController(IMediator mediator, ILogger<InsuranceController> logger)
     {
         _logger = logger;
-        _mapper = mapper;
-        _insuranceService = insuranceService;
+        _mediator = mediator;
     }
 
     [HttpGet("GetInsuranceByIdAsync")]
     public async Task<InsuranceGetDto> GetInsuranceByIdAsync(int insuranceId)
     {
-        _logger.LogInformation("HTTP request received with id {InsuranceId}", insuranceId);
-        var insurance = await _insuranceService.GetInsuranceByIdAsync(insuranceId);
-
-        return _mapper.Map<InsuranceGetDto>(insurance);
+        var insurance = await _mediator.Send(new GetInsuranceByIdQuery() { Id = insuranceId });
+        return insurance;
     }
 
     [HttpPost("CreateInsuranceAsync")]
     public async Task<InsurancePostDto> CreateInsuranceAsync([FromBody] InsurancePostDto dto)
     {
-        return new InsurancePostDto();
+        throw new NotImplementedException();
     }
 }
