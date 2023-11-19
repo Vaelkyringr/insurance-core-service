@@ -1,4 +1,6 @@
-﻿namespace InsuranceCoreService.API.General;
+﻿using InsuranceCoreService.Domain.Aggregates.Insurance;
+
+namespace InsuranceCoreService.API.General;
 
 public class MappingProfile : Profile
 {

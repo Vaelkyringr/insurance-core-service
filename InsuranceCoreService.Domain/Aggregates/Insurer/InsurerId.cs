@@ -1,4 +1,4 @@
-﻿namespace InsuranceCoreService.Domain.Model.InsurerAggregate;
+﻿namespace InsuranceCoreService.Domain.Aggregates.Insurer;
 
 using System;
 

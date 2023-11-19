@@ -1,4 +1,6 @@
-﻿namespace InsuranceCoreService.API.Dtos;
+﻿using InsuranceCoreService.Domain.Aggregates.Insurance;
+
+namespace InsuranceCoreService.API.Dtos;
 
 public class CoveragePostDto
 {

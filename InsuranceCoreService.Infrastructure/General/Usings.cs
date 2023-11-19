@@ -1,2 +1,1 @@
-﻿global using InsuranceCoreService.Domain.Model.InsuranceAggregate;
-global using Microsoft.EntityFrameworkCore;
+﻿global using Microsoft.EntityFrameworkCore;

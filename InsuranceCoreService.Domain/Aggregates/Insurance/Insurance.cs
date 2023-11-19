@@ -1,4 +1,4 @@
-﻿namespace InsuranceCoreService.Domain.Model.InsuranceAggregate;
+﻿namespace InsuranceCoreService.Domain.Aggregates.Insurance;
 
 public class Insurance
 {

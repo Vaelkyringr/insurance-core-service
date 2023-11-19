@@ -1,4 +1,6 @@
-﻿namespace InsuranceCoreService.Infrastructure.Repository;
+﻿using InsuranceCoreService.Domain.Aggregates.Insurance;
+
+namespace InsuranceCoreService.Infrastructure.Repository;
 
 public class InsuranceRepository : IInsuranceRepository
 {
