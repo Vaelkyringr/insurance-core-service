@@ -12,6 +12,9 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+var mapperConfig = new MapperConfiguration(cfg => { cfg.AddProfile(new MappingProfile()); });
+mapperConfig.CreateMapper();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

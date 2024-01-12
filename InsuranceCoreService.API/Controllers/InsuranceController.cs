@@ -19,7 +19,7 @@ public class InsuranceController : ControllerBase
     [HttpGet("GetInsuranceByIdAsync")]
     public async Task<InsuranceGetDto> GetInsuranceByIdAsync(int insuranceId)
     {
-        var insurance = await _mediator.Send(new GetInsuranceByIdQuery() { Id = insuranceId });
+        var insurance = await _mediator.Send(new GetInsuranceByIdQuery { Id = insuranceId });
         return insurance;
     }
 
