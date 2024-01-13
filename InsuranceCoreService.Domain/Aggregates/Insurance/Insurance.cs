@@ -1,8 +1,8 @@
 ﻿namespace InsuranceCoreService.Domain.Aggregates.Insurance;
 
-public class Insurance
+public class Insurance : EntityBase
 {
-    public Insurance () { }
+    public Insurance() { }
 
     public Insurance(string insuranceNumber, decimal premium, Coverage coverages)
     {
@@ -11,15 +11,11 @@ public class Insurance
         InsuranceNumber = insuranceNumber;
     }
 
-    public Guid Id { get; }
+    public string InsuranceNumber { get; set; }
 
-    private decimal YearlyPremium { get; set; }
-
-    private decimal MonthlyPremium => YearlyPremium / 12;
+    public decimal YearlyPremium { get; set; }
 
     private Coverage Coverage { get; set; }
-
-    private string InsuranceNumber { get; set; }
 
     public void CalculatePremium()
     {

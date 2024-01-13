@@ -18,9 +18,8 @@ public class InsuranceDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Insurance>()
-            .ToTable("Insurances")
-            .HasKey(i => i.Id);
+        modelBuilder.Entity<Insurance>().ToTable("Insurances").HasKey(i => i.Id);
+        modelBuilder.Entity<Insurance>().Property(f => f.Id).ValueGeneratedOnAdd();
 
         base.OnModelCreating(modelBuilder);
     }

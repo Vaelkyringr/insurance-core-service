@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace InsuranceCoreService.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,7 +15,12 @@ namespace InsuranceCoreService.Infrastructure.Migrations
                 name: "Insurances",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    InsuranceNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    YearlyPremium = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Updated = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InsuranceCoreService.Infrastructure.Migrations
 {
     [DbContext(typeof(InsuranceDbContext))]
-    [Migration("20240113151707_Initial")]
-    partial class Initial
+    [Migration("20240113203016_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,9 +27,24 @@ namespace InsuranceCoreService.Infrastructure.Migrations
 
             modelBuilder.Entity("InsuranceCoreService.Domain.Aggregates.Insurance.Insurance", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("InsuranceNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("YearlyPremium")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 

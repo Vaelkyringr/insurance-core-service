@@ -24,9 +24,24 @@ namespace InsuranceCoreService.Infrastructure.Migrations
 
             modelBuilder.Entity("InsuranceCoreService.Domain.Aggregates.Insurance.Insurance", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("InsuranceNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Updated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("YearlyPremium")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
