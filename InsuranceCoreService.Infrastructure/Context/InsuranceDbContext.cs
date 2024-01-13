@@ -1,4 +1,6 @@
-﻿namespace InsuranceCoreService.Infrastructure.Context;
+﻿using InsuranceCoreService.Domain.Aggregates.Insurance;
+
+namespace InsuranceCoreService.Infrastructure.Context;
 
 public class InsuranceDbContext : DbContext
 {
@@ -6,5 +8,22 @@ public class InsuranceDbContext : DbContext
 	{
 	}
 
-	public DbSet<Entities.Insurance> Insurances { get; set; }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        if (!optionsBuilder.IsConfigured)
+        {
+            optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Insurance;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+        }
+    }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Insurance>()
+            .ToTable("Insurances")
+            .HasKey(i => i.Id);
+
+        base.OnModelCreating(modelBuilder);
+    }
+
+    public DbSet<Insurance> Insurances { get; set; }
 }

@@ -2,15 +2,16 @@
 
 public class Insurance
 {
+    public Insurance () { }
+
     public Insurance(string insuranceNumber, decimal premium, Coverage coverages)
     {
-        Id = new InsuranceId();
         YearlyPremium = premium;
         Coverage = coverages;
         InsuranceNumber = insuranceNumber;
     }
 
-    private InsuranceId Id { get; }
+    public Guid Id { get; }
 
     private decimal YearlyPremium { get; set; }
 
