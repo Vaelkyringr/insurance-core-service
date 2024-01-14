@@ -12,7 +12,7 @@ public class InsuranceDbContext : DbContext
     {
         if (!optionsBuilder.IsConfigured)
         {
-            optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Insurance;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
+            optionsBuilder.UseSqlServer("Server=localhost;Database=Insurance;Integrated Security=True;Encrypt=False;TrustServerCertificate=True;");
         }
     }
 
