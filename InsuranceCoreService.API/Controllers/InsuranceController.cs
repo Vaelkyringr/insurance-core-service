@@ -17,14 +17,14 @@ public class InsuranceController : ControllerBase
     }
 
     [HttpGet("GetInsuranceByIdAsync")]
-    public async Task<InsuranceGetDto> GetInsuranceByIdAsync(int insuranceId)
+    public async Task<IActionResult> GetInsuranceByIdAsync(int insuranceId)
     {
         var insurance = await _mediator.Send(new GetInsuranceByIdQuery { Id = insuranceId });
-        return insurance;
+        return insurance == null ? NotFound() : Ok(insurance);
     }
 
     [HttpPost("CreateInsuranceAsync")]
-    public async Task<InsurancePostDto> CreateInsuranceAsync([FromBody] InsurancePostDto dto)
+    public async Task<IActionResult> CreateInsuranceAsync([FromBody] InsurancePostDto dto)
     {
         throw new NotImplementedException();
     }
