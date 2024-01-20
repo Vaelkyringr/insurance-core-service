@@ -12,7 +12,7 @@ public class InsuranceDbContext : DbContext
     {
         if (!optionsBuilder.IsConfigured)
         {
-            optionsBuilder.UseSqlServer("Server=localhost;Database=Insurance;Integrated Security=True;Encrypt=False;TrustServerCertificate=True;");
+            optionsBuilder.UseSqlServer("Server=localhost,1433;Database=Insurance;User Id=sa;Password=1TestTest9;Encrypt=False;TrustServerCertificate=True;");
         }
     }
 

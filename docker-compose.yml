@@ -1,0 +1,9 @@
+version: '3.4'
+
+services:
+  insurancecoreservice.api:
+    image: ${DOCKER_REGISTRY-}insurancecoreserviceapi
+    network_mode: "host"
+    build:
+      context: .
+      dockerfile: InsuranceCoreService.API/Dockerfile
