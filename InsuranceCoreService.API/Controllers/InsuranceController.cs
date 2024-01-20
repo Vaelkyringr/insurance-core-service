@@ -1,4 +1,6 @@
-﻿using InsuranceCoreService.API.Queries;
+﻿using InsuranceCoreService.API.Commands;
+using InsuranceCoreService.API.Queries;
+using InsuranceCoreService.API.Responses;
 using MediatR;
 
 namespace InsuranceCoreService.API.Controllers;
@@ -24,8 +26,19 @@ public class InsuranceController : ControllerBase
     }
 
     [HttpPost("CreateInsuranceAsync")]
-    public async Task<IActionResult> CreateInsuranceAsync([FromBody] InsurancePostDto dto)
+    public async Task<IActionResult> CreateInsuranceAsync([FromBody] CreateInsuranceCommand command)
     {
-        throw new NotImplementedException();
+        CreateInsuranceResponse response;
+
+        try
+        {
+            response = await _mediator.Send(command);
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+
+        return Ok(response);
     }
 }
