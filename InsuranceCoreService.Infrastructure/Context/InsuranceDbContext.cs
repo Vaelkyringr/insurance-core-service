@@ -1,4 +1,5 @@
 ﻿using InsuranceCoreService.Domain.Aggregates.Insurance;
+using InsuranceCoreService.Domain.Aggregates.Insurer;
 
 namespace InsuranceCoreService.Infrastructure.Context;
 
@@ -11,7 +12,10 @@ public class InsuranceDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Insurance>().ToTable("Insurances").HasKey(i => i.Id);
-        modelBuilder.Entity<Insurance>().Property(f => f.Id).ValueGeneratedOnAdd();
+        modelBuilder.Entity<Insurance>().Property(p => p.Id).ValueGeneratedOnAdd();
+
+        modelBuilder.Entity<Insurer>().ToTable("Insurers").HasKey(i => i.Id);
+        modelBuilder.Entity<Insurer>().Property(p => p.Id).ValueGeneratedOnAdd();
 
         base.OnModelCreating(modelBuilder);
     }

@@ -4,21 +4,23 @@ public class Insurance : EntityBase
 {
     public Insurance() { }
 
-    public Insurance(string insuranceNumber, decimal premium, Coverage coverages)
+    public Insurance(string insuranceNumber, decimal premium)
     {
         YearlyPremium = premium;
-        Coverage = coverages;
         InsuranceNumber = insuranceNumber;
+        Created = DateTime.UtcNow;
     }
 
-    public string InsuranceNumber { get; set; }
+    public int InsurerId { get; set; }
 
-    public decimal YearlyPremium { get; set; }
+    public string InsuranceNumber { get; }
 
-    private Coverage Coverage { get; set; }
+    private decimal YearlyPremium { get; }
+
+    public Aggregates.Insurer.Insurer Insurer { get; set; }
 
     public void CalculatePremium()
     {
-        YearlyPremium += Coverage.GetYearlyBaseCoverageCost();
+        //YearlyPremium += Coverage.GetYearlyBaseCoverageCost();
     }
 }

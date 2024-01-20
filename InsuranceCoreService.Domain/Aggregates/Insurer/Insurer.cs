@@ -2,16 +2,17 @@
 
 public class Insurer
 {
+    public Insurer() { }
+
     public Insurer(string name, string orgNr)
     {
-        Id = new InsurerId();
         Name = name;
         OrgNr = orgNr;
     }
 
-    private InsurerId Id { get; set; }
+    public int Id { get; set; }
 
-    private string Name { get; set; }
+    public string Name { get; }
 
-    private string OrgNr { get; set; }
+    public string OrgNr { get; }
 }

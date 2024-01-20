@@ -14,4 +14,9 @@ public class InsuranceRepository : Repository<Insurance>, IInsuranceRepository
     {
         return await GetByIdAsync(insuranceId);
     }
+
+    public async Task CreateInsuranceAsync(Insurance insurance)
+    {
+        await AddAsync(insurance);
+    }
 }

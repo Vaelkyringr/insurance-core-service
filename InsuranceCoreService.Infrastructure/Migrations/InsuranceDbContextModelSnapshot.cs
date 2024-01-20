@@ -33,19 +33,41 @@ namespace InsuranceCoreService.Infrastructure.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("InsuranceNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("InsurerId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("Updated")
                         .HasColumnType("datetime2");
 
-                    b.Property<decimal>("YearlyPremium")
-                        .HasColumnType("decimal(18,2)");
+                    b.HasKey("Id");
+
+                    b.HasIndex("InsurerId");
+
+                    b.ToTable("Insurances", (string)null);
+                });
+
+            modelBuilder.Entity("InsuranceCoreService.Domain.Aggregates.Insurer.Insurer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.HasKey("Id");
 
-                    b.ToTable("Insurances", (string)null);
+                    b.ToTable("Insurers", (string)null);
+                });
+
+            modelBuilder.Entity("InsuranceCoreService.Domain.Aggregates.Insurance.Insurance", b =>
+                {
+                    b.HasOne("InsuranceCoreService.Domain.Aggregates.Insurer.Insurer", "Insurer")
+                        .WithMany()
+                        .HasForeignKey("InsurerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Insurer");
                 });
 #pragma warning restore 612, 618
         }
