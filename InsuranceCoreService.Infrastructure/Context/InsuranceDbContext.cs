@@ -8,14 +8,6 @@ public class InsuranceDbContext : DbContext
 	{
 	}
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        if (!optionsBuilder.IsConfigured)
-        {
-            optionsBuilder.UseSqlServer("Server=localhost,1433;Database=Insurance;User Id=sa;Password=1TestTest9;Encrypt=False;TrustServerCertificate=True;");
-        }
-    }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Insurance>().ToTable("Insurances").HasKey(i => i.Id);
