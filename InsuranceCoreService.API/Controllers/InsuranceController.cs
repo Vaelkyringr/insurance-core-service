@@ -1,7 +1,6 @@
 ﻿using InsuranceCoreService.API.Commands;
 using InsuranceCoreService.API.Queries;
 using InsuranceCoreService.API.Responses;
-using MediatR;
 
 namespace InsuranceCoreService.API.Controllers;
 

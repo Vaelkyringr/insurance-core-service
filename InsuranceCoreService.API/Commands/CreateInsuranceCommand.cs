@@ -1,5 +1,4 @@
 ﻿using InsuranceCoreService.API.Responses;
-using MediatR;
 
 namespace InsuranceCoreService.API.Commands;
 
