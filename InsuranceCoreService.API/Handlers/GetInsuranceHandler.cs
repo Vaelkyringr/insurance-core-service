@@ -1,6 +1,6 @@
 ﻿using InsuranceCoreService.API.Queries;
 using InsuranceCoreService.API.Responses;
-using InsuranceCoreService.Domain.Aggregates.Insurance;
+using InsuranceCoreService.Domain.InsuranceAggregate;
 using MediatR;
 
 namespace InsuranceCoreService.API.Handlers;

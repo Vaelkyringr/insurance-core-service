@@ -1,4 +1,4 @@
-﻿namespace InsuranceCoreService.Domain.Aggregates.Insurance;
+﻿namespace InsuranceCoreService.Domain.InsuranceAggregate;
 
 public interface IInsuranceRepository
 {

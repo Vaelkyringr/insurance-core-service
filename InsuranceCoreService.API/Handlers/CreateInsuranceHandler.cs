@@ -1,7 +1,6 @@
 ﻿using InsuranceCoreService.API.Commands;
 using InsuranceCoreService.API.Responses;
-using InsuranceCoreService.Domain.Aggregates.Insurance;
-using MediatR;
+using InsuranceCoreService.Domain.InsuranceAggregate;
 
 public class CreateInsuranceHandler : IRequestHandler<CreateInsuranceCommand, CreateInsuranceResponse>
 {

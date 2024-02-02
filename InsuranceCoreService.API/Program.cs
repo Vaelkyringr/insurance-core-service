@@ -1,4 +1,4 @@
-using InsuranceCoreService.Domain.Aggregates.Insurance;
+using InsuranceCoreService.Domain.InsuranceAggregate;
 using InsuranceCoreService.Infrastructure.Repository;
 using System.Reflection;
 

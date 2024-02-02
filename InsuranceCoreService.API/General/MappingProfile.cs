@@ -1,5 +1,5 @@
 ﻿using InsuranceCoreService.API.Responses;
-using InsuranceCoreService.Domain.Aggregates.Insurance;
+using InsuranceCoreService.Domain.InsuranceAggregate;
 
 namespace InsuranceCoreService.API.General;
 

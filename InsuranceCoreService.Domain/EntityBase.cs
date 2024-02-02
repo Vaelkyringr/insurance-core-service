@@ -1,4 +1,4 @@
-﻿namespace InsuranceCoreService.Domain.Aggregates;
+﻿namespace InsuranceCoreService.Domain;
 
 public abstract class EntityBase
 {
