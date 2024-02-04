@@ -1,6 +1,6 @@
 using InsuranceCoreService.API.Controllers;
 using InsuranceCoreService.API.Queries;
-using InsuranceCoreService.API.Responses.Insurance;
+using InsuranceCoreService.API.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -16,7 +16,7 @@ public class InsuranceControllerTests
         const int insuranceId = 1;
         var mediator = new Mock<IMediator>();
         var logger = new Mock<ILogger<InsuranceController>>();
-        mediator.Setup(m => m.Send(It.IsAny<GetInsuranceByIdQuery>(), default)).ReturnsAsync(() => null);
+        mediator.Setup(m => m.Send(It.IsAny<GetInsuranceByIdQuery>(), default)).ReturnsAsync(() => null!);
         
         var controller = new InsuranceController(mediator.Object, logger.Object);
         var result = await controller.GetInsuranceByIdAsync(insuranceId);

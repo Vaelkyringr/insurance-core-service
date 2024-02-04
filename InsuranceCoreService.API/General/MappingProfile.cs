@@ -1,6 +1,5 @@
-﻿using InsuranceCoreService.API.Commands.Insurer;
-using InsuranceCoreService.API.Responses.Insurance;
-using InsuranceCoreService.API.Responses.Insurer;
+﻿using InsuranceCoreService.API.Commands;
+using InsuranceCoreService.API.Responses;
 using InsuranceCoreService.Domain.InsuranceAggregate;
 using InsuranceCoreService.Domain.InsurerAggregate;
 

@@ -1,6 +1,8 @@
-﻿using InsuranceCoreService.API.Commands.Insurance;
-using InsuranceCoreService.API.Responses.Insurance;
+﻿using InsuranceCoreService.API.Commands;
+using InsuranceCoreService.API.Responses;
 using InsuranceCoreService.Domain.InsuranceAggregate;
+
+namespace InsuranceCoreService.API.Handlers;
 
 public class CreateInsuranceHandler : IRequestHandler<CreateInsurance, CreateInsuranceResponse>
 {

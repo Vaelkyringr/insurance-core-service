@@ -4,9 +4,9 @@ namespace InsuranceCoreService.Domain.InsurerAggregate;
 
 public class Insurer : EntityBase
 {
-    public string Name { get; set; }
+    public string Name { get; set; } = null!;
 
-    public string OrganizationNumber { get; set; }
+    public string OrganizationNumber { get; set; } = null!;
 
-    public ICollection<Insurance> Insurances { get; set; }
+    public ICollection<Insurance> Insurances { get; set; } = null!;
 }

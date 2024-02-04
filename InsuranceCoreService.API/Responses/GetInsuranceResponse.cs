@@ -1,4 +1,4 @@
-﻿namespace InsuranceCoreService.API.Responses.Insurance;
+﻿namespace InsuranceCoreService.API.Responses;
 
 public class GetInsuranceResponse
 {

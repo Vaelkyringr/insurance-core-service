@@ -1,6 +1,6 @@
-﻿using InsuranceCoreService.API.Responses.Insurance;
+﻿using InsuranceCoreService.API.Responses;
 
-namespace InsuranceCoreService.API.Commands.Insurance;
+namespace InsuranceCoreService.API.Commands;
 
 public class CreateInsurance : IRequest<CreateInsuranceResponse>
 {

@@ -1,4 +1,4 @@
-﻿namespace InsuranceCoreService.API.Commands.Insurance;
+﻿namespace InsuranceCoreService.API.Commands;
 
 public class InsurerDto
 {

@@ -7,8 +7,8 @@ public class InsuranceCoverage : EntityBase
     public InsuranceCoverage() { }
 
     public int InsuranceId { get; set; }
-    public Insurance Insurance { get; set; }
+    public Insurance Insurance { get; set; } = null!;
 
     public int CoverageId { get; set; }
-    public Coverage Coverage { get; set; }
+    public Coverage Coverage { get; set; } = null!;
 }

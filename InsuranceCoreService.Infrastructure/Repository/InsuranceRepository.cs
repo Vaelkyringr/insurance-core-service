@@ -10,7 +10,7 @@ public class InsuranceRepository : Repository<Insurance>, IInsuranceRepository
     {
     }
 
-    public async Task<Insurance> GetInsuranceByIdAsync(int insuranceId)
+    public async Task<Insurance?> GetInsuranceByIdAsync(int insuranceId)
     {
         return await GetByIdAsync(insuranceId);
     }

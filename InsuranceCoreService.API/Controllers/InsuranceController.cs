@@ -1,7 +1,6 @@
-﻿using InsuranceCoreService.API.Commands.Insurance;
-using InsuranceCoreService.API.Commands.Insurer;
+﻿using InsuranceCoreService.API.Commands;
 using InsuranceCoreService.API.Queries;
-using InsuranceCoreService.API.Responses.Insurance;
+using InsuranceCoreService.API.Responses;
 
 namespace InsuranceCoreService.API.Controllers;
 

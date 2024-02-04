@@ -18,11 +18,11 @@ public class Insurance : EntityBase
         Coverages = new List<Coverage>();
     }
 
-    public string InsuranceNumber { get; set; }
+    public string InsuranceNumber { get; set; } = null!;
     public decimal YearlyPremium { get; set; }
     public int InsurerId { get; set; }
 
-    public Insurer Insurer { get; set; }
+    public Insurer Insurer { get; set; } = null!;
     public ICollection<Coverage> Coverages { get; set; }
-    public ICollection<InsuranceCoverage> InsuranceCoverages { get; set; }
+    public ICollection<InsuranceCoverage> InsuranceCoverages { get; set; } = null!;
 }
