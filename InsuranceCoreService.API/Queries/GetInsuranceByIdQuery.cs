@@ -1,4 +1,4 @@
-﻿using InsuranceCoreService.API.Responses;
+﻿using InsuranceCoreService.API.Responses.Insurance;
 
 namespace InsuranceCoreService.API.Queries;
 

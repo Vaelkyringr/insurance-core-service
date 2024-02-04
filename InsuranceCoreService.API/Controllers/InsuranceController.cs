@@ -1,6 +1,7 @@
-﻿using InsuranceCoreService.API.Commands;
+﻿using InsuranceCoreService.API.Commands.Insurance;
+using InsuranceCoreService.API.Commands.Insurer;
 using InsuranceCoreService.API.Queries;
-using InsuranceCoreService.API.Responses;
+using InsuranceCoreService.API.Responses.Insurance;
 
 namespace InsuranceCoreService.API.Controllers;
 
@@ -25,7 +26,7 @@ public class InsuranceController : ControllerBase
     }
 
     [HttpPost("CreateInsuranceAsync")]
-    public async Task<IActionResult> CreateInsuranceAsync([FromBody] CreateInsuranceCommand command)
+    public async Task<IActionResult> CreateInsuranceAsync([FromBody] CreateInsurance command)
     {
         CreateInsuranceResponse response;
 

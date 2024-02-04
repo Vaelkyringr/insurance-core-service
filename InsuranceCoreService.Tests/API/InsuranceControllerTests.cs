@@ -1,6 +1,6 @@
 using InsuranceCoreService.API.Controllers;
 using InsuranceCoreService.API.Queries;
-using InsuranceCoreService.API.Responses;
+using InsuranceCoreService.API.Responses.Insurance;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;

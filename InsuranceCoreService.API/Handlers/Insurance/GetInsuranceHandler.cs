@@ -1,8 +1,8 @@
 ﻿using InsuranceCoreService.API.Queries;
-using InsuranceCoreService.API.Responses;
+using InsuranceCoreService.API.Responses.Insurance;
 using InsuranceCoreService.Domain.InsuranceAggregate;
 
-namespace InsuranceCoreService.API.Handlers;
+namespace InsuranceCoreService.API.Handlers.Insurance;
 
 public class GetInsuranceHandler : IRequestHandler<GetInsuranceByIdQuery, GetInsuranceResponse>
 {

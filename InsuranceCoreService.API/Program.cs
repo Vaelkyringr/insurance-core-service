@@ -1,4 +1,5 @@
 using InsuranceCoreService.Domain.InsuranceAggregate;
+using InsuranceCoreService.Domain.InsurerAggregate;
 using InsuranceCoreService.Infrastructure.Repository;
 using System.Reflection;
 
@@ -12,6 +13,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IInsuranceRepository, InsuranceRepository>();
+builder.Services.AddScoped<IInsurerRepository, InsurerRepository>();
 
 var app = builder.Build();
 var mapperConfig = new MapperConfiguration(cfg => { cfg.AddProfile(new MappingProfile()); });

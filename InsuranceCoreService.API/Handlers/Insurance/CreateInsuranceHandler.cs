@@ -1,8 +1,8 @@
-﻿using InsuranceCoreService.API.Commands;
-using InsuranceCoreService.API.Responses;
+﻿using InsuranceCoreService.API.Commands.Insurance;
+using InsuranceCoreService.API.Responses.Insurance;
 using InsuranceCoreService.Domain.InsuranceAggregate;
 
-public class CreateInsuranceHandler : IRequestHandler<CreateInsuranceCommand, CreateInsuranceResponse>
+public class CreateInsuranceHandler : IRequestHandler<CreateInsurance, CreateInsuranceResponse>
 {
     private readonly IInsuranceRepository _repository;
 
@@ -11,9 +11,9 @@ public class CreateInsuranceHandler : IRequestHandler<CreateInsuranceCommand, Cr
         _repository = repository;
     }
 
-    public async Task<CreateInsuranceResponse> Handle(CreateInsuranceCommand request, CancellationToken cancellationToken)
+    public async Task<CreateInsuranceResponse> Handle(CreateInsurance request, CancellationToken cancellationToken)
     {
-        var insurance = new Insurance(request.InsuranceNumber, request.Premium);
+        var insurance = new Insurance(request.InsuranceNumber, request.YearlyPremium);
         await _repository.CreateInsuranceAsync(insurance);
 
         return new CreateInsuranceResponse()

@@ -10,9 +10,9 @@ public class Insurance : EntityBase
         Coverages = new List<Coverage>();
     }
 
-    public Insurance(string insuranceNumber, decimal premium)
+    public Insurance(string insuranceNumber, decimal yearlyPremium)
     {
-        YearlyPremium = premium;
+        YearlyPremium = yearlyPremium;
         InsuranceNumber = insuranceNumber;
         Created = DateTime.UtcNow;
         Coverages = new List<Coverage>();
