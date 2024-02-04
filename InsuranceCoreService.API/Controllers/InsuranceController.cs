@@ -18,6 +18,9 @@ public class InsuranceController : ControllerBase
     }
 
     [HttpGet("GetInsuranceByIdAsync")]
+    [ProducesResponseType<CreateInsurerResponse>(StatusCodes.Status200OK)]
+    [ProducesResponseType<CreateInsurerResponse>(StatusCodes.Status404NotFound)]
+    [ProducesResponseType<CreateInsurerResponse>(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> GetInsuranceByIdAsync(int insuranceId)
     {
         if (insuranceId <= 0)
