@@ -20,8 +20,20 @@ public class InsuranceController : ControllerBase
     [HttpGet("GetInsuranceByIdAsync")]
     public async Task<IActionResult> GetInsuranceByIdAsync(int insuranceId)
     {
-        var insurance = await _mediator.Send(new GetInsuranceByIdQuery { Id = insuranceId });
-        return insurance == null ? NotFound() : Ok(insurance);
+        if (insuranceId <= 0)
+        {
+            ModelState.AddModelError(nameof(insuranceId), "InsuranceId must be greater than 0.");
+        }
+
+        if (ModelState.IsValid)
+        {
+            var insurance = await _mediator.Send(new GetInsuranceByIdQuery { Id = insuranceId });
+            return insurance == null ? NotFound() : Ok(insurance);
+        }
+
+        _logger.LogInformation("{Errors}", ModelState.Values.SelectMany(v => v.Errors));
+
+        return BadRequest(ModelState);
     }
 
     [HttpPost("CreateInsuranceAsync")]
