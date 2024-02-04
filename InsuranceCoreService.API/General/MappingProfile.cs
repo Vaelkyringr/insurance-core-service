@@ -9,9 +9,11 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
+        CreateMap<CreateInsurance, Insurance>();
         CreateMap<Insurance, GetInsuranceResponse>();
-        CreateMap<Insurer, CreateInsurerResponse>();
+
         CreateMap<CreateInsurer, Insurer>();
         CreateMap<CreateInsurerResponse, Insurer>();
+        CreateMap<Insurer, CreateInsurerResponse>();
     }
 }
