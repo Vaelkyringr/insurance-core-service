@@ -2,7 +2,9 @@
 
 public class CreateInsuranceResponse
 {
-    public string? InsuranceNumber { get; set; }
+    public int Id { get; set; }
+
+    public string InsuranceNumber { get; set; } = null!;
 
     public decimal YearlyPremium { get; set; } = 0;
 

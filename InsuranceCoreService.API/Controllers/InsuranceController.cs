@@ -40,19 +40,18 @@ public class InsuranceController : ControllerBase
     }
 
     [HttpPost("CreateInsuranceAsync")]
+    [ProducesResponseType<CreateInsurerResponse>(StatusCodes.Status201Created)]
+    [ProducesResponseType<CreateInsurerResponse>(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> CreateInsuranceAsync([FromBody] CreateInsurance command)
     {
-        CreateInsuranceResponse response;
-
-        try
+        if (!ModelState.IsValid)
         {
-            response = await _mediator.Send(command);
-        }
-        catch (ArgumentException ex)
-        {
-            return BadRequest(ex.Message);
+            _logger.LogInformation("{Errors}", ModelState.Values.SelectMany(v => v.Errors));
+            return BadRequest(ModelState);
         }
 
-        return Ok(response);
+        var response = await _mediator.Send(command);
+
+        return CreatedAtAction("CreateInsuranceAsync", new { id = response.Id }, response);
     }
 }
