@@ -4,5 +4,5 @@ public interface IInsuranceRepository
 {
     Task<Insurance?> GetInsuranceByIdAsync(int insuranceId);
 
-    Task CreateInsuranceAsync(Insurance insurance);
+    Task<Insurance> CreateInsuranceAsync(Insurance insurance);
 }

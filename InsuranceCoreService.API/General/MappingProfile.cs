@@ -10,6 +10,7 @@ public class MappingProfile : Profile
     public MappingProfile()
     {
         CreateMap<CreateInsurance, Insurance>();
+        CreateMap<Insurance, CreateInsuranceResponse>();
         CreateMap<Insurance, GetInsuranceResponse>();
 
         CreateMap<CreateInsurer, Insurer>();

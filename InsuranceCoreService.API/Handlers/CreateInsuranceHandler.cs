@@ -18,12 +18,8 @@ public class CreateInsuranceHandler : IRequestHandler<CreateInsurance, CreateIns
     public async Task<CreateInsuranceResponse> Handle(CreateInsurance request, CancellationToken cancellationToken)
     {
         var insurance = _mapper.Map<Insurance>(request);
+        var result = await _repository.CreateInsuranceAsync(insurance);
 
-        await _repository.CreateInsuranceAsync(insurance);
-
-        return new CreateInsuranceResponse()
-        {
-            InsuranceNumber = insurance.InsuranceNumber
-        };
+        return _mapper.Map<CreateInsuranceResponse>(result);
     }
 }
