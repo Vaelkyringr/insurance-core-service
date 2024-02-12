@@ -18,6 +18,9 @@ public class InsuranceDbContext : DbContext
             .HasOne(i => i.Insurer)
             .WithMany(i => i.Insurances)
             .HasForeignKey(i => i.InsurerId);
+        modelBuilder.Entity<Insurance>()
+            .Property(i => i.YearlyPremium)
+            .HasColumnType("decimal(18,4)");
 
         modelBuilder.Entity<Insurer>().ToTable("Insurers").HasKey(i => i.Id);
         modelBuilder.Entity<Insurer>().Property(p => p.Id).ValueGeneratedOnAdd();

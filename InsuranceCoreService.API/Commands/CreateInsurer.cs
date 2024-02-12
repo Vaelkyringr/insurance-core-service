@@ -10,4 +10,7 @@ public class CreateInsurer : IRequest<CreateInsurerResponse>
 
     [Required(ErrorMessage = "OrganizationNumber is required")]
     public string OrganizationNumber { get; set; } = null!;
+
+    [Required(ErrorMessage = "Address is required")]
+    public string Address { get; set; } = null!;
 }

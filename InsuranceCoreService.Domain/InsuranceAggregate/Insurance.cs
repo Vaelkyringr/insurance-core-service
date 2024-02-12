@@ -21,6 +21,8 @@ public class Insurance : EntityBase
     public string InsuranceNumber { get; set; } = null!;
     public decimal YearlyPremium { get; set; }
     public int InsurerId { get; set; }
+    public DateTime StartPeriod { get; set; }
+    public DateTime EndPeriod { get; set; }
 
     public Insurer Insurer { get; set; } = null!;
     public ICollection<Coverage> Coverages { get; set; }

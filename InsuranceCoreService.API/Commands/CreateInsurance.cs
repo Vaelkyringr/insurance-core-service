@@ -13,4 +13,10 @@ public class CreateInsurance : IRequest<CreateInsuranceResponse>
 
     [Required(ErrorMessage = "InsurerId is required")]
     public int InsurerId { get; set; } = 0;
+
+    [Required(ErrorMessage = "StartPeriod is required")]
+    public DateTime StartPeriod { get; set; }
+
+    [Required(ErrorMessage = "EndPeriod is required")]
+    public DateTime EndPeriod { get; set; }
 }

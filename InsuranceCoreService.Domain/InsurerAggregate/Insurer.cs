@@ -8,5 +8,7 @@ public class Insurer : EntityBase
 
     public string OrganizationNumber { get; set; } = null!;
 
+    public string Address { get; set; } = null!;
+
     public ICollection<Insurance> Insurances { get; set; } = null!;
 }
