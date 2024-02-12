@@ -8,5 +8,9 @@ public class CreateInsuranceResponse
 
     public decimal YearlyPremium { get; init; }
 
-    public DateTime Created { get; init; }
+    public int InsurerId { get; set; }
+
+    public DateTime StartPeriod { get; set; }
+
+    public DateTime EndPeriod { get; set; }
 }
