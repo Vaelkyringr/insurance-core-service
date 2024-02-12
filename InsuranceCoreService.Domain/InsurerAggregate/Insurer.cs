@@ -4,11 +4,11 @@ namespace InsuranceCoreService.Domain.InsurerAggregate;
 
 public class Insurer : EntityBase
 {
-    public string Name { get; set; } = null!;
+    public string Name { get; init; } = null!;
 
-    public string OrganizationNumber { get; set; } = null!;
+    public string OrganizationNumber { get; init; } = null!;
 
-    public string Address { get; set; } = null!;
+    public string Address { get; init; } = null!;
 
-    public ICollection<Insurance> Insurances { get; set; } = null!;
+    public ICollection<Insurance> Insurances { get; init; } = null!;
 }
