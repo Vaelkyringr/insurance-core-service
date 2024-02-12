@@ -1,4 +1,5 @@
 ﻿using InsuranceCoreService.API.Commands;
+using InsuranceCoreService.API.Queries;
 using InsuranceCoreService.API.Responses;
 
 namespace InsuranceCoreService.API.Controllers;
@@ -8,9 +9,17 @@ namespace InsuranceCoreService.API.Controllers;
 public class InsurerController(IMediator mediator, ILogger<InsurerController> logger) : ControllerBase
 {
     [HttpGet("GetAllInsurersAsync")]
-    public async Task<IActionResult> GetAllInsurersAsync([FromBody] CreateInsurer command)
+    public async Task<IActionResult> GetAllInsurersAsync([FromQuery] GetInsurers query)
     {
-        return Ok();
+        if (!ModelState.IsValid)
+        {
+            logger.LogInformation("{Errors}", ModelState.Values.SelectMany(v => v.Errors));
+            return BadRequest(ModelState);
+        }
+
+        var response = await mediator.Send(query);
+
+        return Ok(response);
     }
 
     [HttpPost("CreateInsurerAsync")]
