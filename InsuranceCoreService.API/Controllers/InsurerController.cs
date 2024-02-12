@@ -5,15 +5,12 @@ namespace InsuranceCoreService.API.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
-public class InsurerController : ControllerBase
+public class InsurerController(IMediator mediator, ILogger<InsurerController> logger) : ControllerBase
 {
-    private readonly IMediator _mediator;
-    private readonly ILogger<InsurerController> _logger;
-
-    public InsurerController(IMediator mediator, ILogger<InsurerController> logger)
+    [HttpGet("GetAllInsurersAsync")]
+    public async Task<IActionResult> GetAllInsurersAsync([FromBody] CreateInsurer command)
     {
-        _logger = logger;
-        _mediator = mediator;
+        return Ok();
     }
 
     [HttpPost("CreateInsurerAsync")]
@@ -23,11 +20,11 @@ public class InsurerController : ControllerBase
     {
         if (!ModelState.IsValid) 
         {
-            _logger.LogInformation("{Errors}", ModelState.Values.SelectMany(v => v.Errors));
+            logger.LogInformation("{Errors}", ModelState.Values.SelectMany(v => v.Errors));
             return BadRequest(ModelState);
         }
 
-        var response = await _mediator.Send(command);
+        var response = await mediator.Send(command);
 
         return CreatedAtAction("CreateInsurerAsync", new { id = response.Id }, response);
     }
