@@ -4,7 +4,7 @@ namespace InsuranceCoreService.Infrastructure.Repository;
 
 public abstract class Repository<T> : IRepository<T> where T : class
 {
-    protected readonly InsuranceDbContext _dbContext;
+    private readonly InsuranceDbContext _dbContext;
 
     protected Repository(InsuranceDbContext dbContext)
     {
