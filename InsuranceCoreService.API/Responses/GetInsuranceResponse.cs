@@ -2,11 +2,11 @@
 
 public class GetInsuranceResponse
 {
-    public int Id { get; set; }
+    public int Id { get; init; }
 
-    public string? InsuranceNumber { get; set; }
+    public string? InsuranceNumber { get; init; }
 
-    public decimal YearlyPremium { get; set; }
+    public decimal YearlyPremium { get; init; }
 
     public DateTime StartPeriod { get; set; }
 

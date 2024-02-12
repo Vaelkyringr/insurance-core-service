@@ -2,11 +2,11 @@
 
 public class CreateInsuranceResponse
 {
-    public int Id { get; set; }
+    public int Id { get; init; }
 
-    public string InsuranceNumber { get; set; } = null!;
+    public string InsuranceNumber { get; init; } = null!;
 
-    public decimal YearlyPremium { get; set; } = 0;
+    public decimal YearlyPremium { get; init; }
 
-    public DateTime Created { get; set; }
+    public DateTime Created { get; init; }
 }
