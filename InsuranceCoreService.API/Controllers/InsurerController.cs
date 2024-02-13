@@ -9,6 +9,8 @@ namespace InsuranceCoreService.API.Controllers;
 public class InsurerController(IMediator mediator, ILogger<InsurerController> logger) : ControllerBase
 {
     [HttpGet("GetAllInsurersAsync")]
+    [ProducesResponseType<GetInsurersResponse>(StatusCodes.Status200OK)]
+    [ProducesResponseType<GetInsurersResponse>(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> GetAllInsurersAsync([FromQuery] GetInsurers query)
     {
         if (!ModelState.IsValid)

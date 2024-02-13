@@ -18,7 +18,13 @@ public class MappingProfile : Profile
         CreateMap<CreateInsurerResponse, Insurer>();
         CreateMap<Insurer, CreateInsurerResponse>();
         CreateMap<Insurer, GetInsurersResponse>();
-        CreateMap<IEnumerable<Insurer>, IEnumerable<InsurerDto>>();
-        CreateMap<Insurer, InsurerDto>();
+
+        //CreateMap<Insurer, InsurerDto>()
+        //    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+        //    .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
+        //    .ForMember(dest => dest.OrganizationNumber, opt => opt.MapFrom(src => src.OrganizationNumber))
+        //    .ForMember(dest => dest.Address, opt => opt.MapFrom(src => src.Address));
+
+        CreateMap<List<Insurer>, GetInsurersResponse>();
     }
-}
+};
