@@ -15,5 +15,4 @@ public class Insurance : EntityBase
 
     public Insurer Insurer { get; init; } = null!;
     public ICollection<Coverage> Coverages { get; init; } = null!;
-    public ICollection<InsuranceCoverage> InsuranceCoverages { get; init; } = null!;
 }

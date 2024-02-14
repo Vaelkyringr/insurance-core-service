@@ -19,6 +19,10 @@ public class InsuranceDbContext : DbContext
             .HasOne(i => i.Insurer)
             .WithMany(i => i.Insurances)
             .HasForeignKey(i => i.InsurerId);
+        modelBuilder.Entity<Insurance>()
+            .HasMany(i => i.Coverages)
+            .WithMany(i => i.Insurances)
+            .UsingEntity(x => x.ToTable("InsuranceCoverage"));
 
         modelBuilder.Entity<Insurer>().ToTable("Insurers").HasKey(i => i.Id);
         modelBuilder.Entity<Insurer>().Property(p => p.Id).ValueGeneratedOnAdd();
@@ -26,14 +30,6 @@ public class InsuranceDbContext : DbContext
         modelBuilder.Entity<InsuranceCoverage>().ToTable("InsuranceCoverages").HasKey(i => i.Id);
         modelBuilder.Entity<InsuranceCoverage>().Property(p => p.Id).ValueGeneratedOnAdd();
         modelBuilder.Entity<InsuranceCoverage>().HasKey(ic => new { ic.InsuranceId, ic.CoverageId });
-        modelBuilder.Entity<InsuranceCoverage>()
-            .HasOne(ic => ic.Insurance)
-            .WithMany(i => i.InsuranceCoverages)
-            .HasForeignKey(ic => ic.InsuranceId);
-        modelBuilder.Entity<InsuranceCoverage>()
-            .HasOne(ic => ic.Coverage)
-            .WithMany(c => c.InsuranceCoverages)
-            .HasForeignKey(ic => ic.CoverageId);
 
         modelBuilder.Entity<Coverage>().ToTable("Coverages").HasKey(c => c.Id);
         modelBuilder.Entity<Coverage>().Property(p => p.Id).ValueGeneratedOnAdd();

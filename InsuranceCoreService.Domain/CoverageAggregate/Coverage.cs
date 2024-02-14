@@ -1,4 +1,6 @@
-﻿namespace InsuranceCoreService.Domain.CoverageAggregate;
+﻿using InsuranceCoreService.Domain.InsuranceAggregate;
+
+namespace InsuranceCoreService.Domain.CoverageAggregate;
 
 public class Coverage : EntityBase
 {
@@ -8,5 +10,5 @@ public class Coverage : EntityBase
 
     public decimal BaseAmount { get; init; }
 
-    public ICollection<InsuranceCoverage> InsuranceCoverages { get; init; } = null!;
+    public ICollection<Insurance> Insurances { get; init; } = null!;
 }
