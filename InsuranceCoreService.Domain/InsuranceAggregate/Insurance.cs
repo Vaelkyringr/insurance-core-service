@@ -14,5 +14,5 @@ public class Insurance : EntityBase
     public DateTime EndPeriod { get; init; }
 
     public Insurer Insurer { get; init; } = null!;
-    public ICollection<Coverage> Coverages { get; set; } = null!;
+    public ICollection<Coverage> Coverages { get; set; } = [];
 }

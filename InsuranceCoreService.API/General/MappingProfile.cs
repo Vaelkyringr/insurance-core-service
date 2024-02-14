@@ -11,7 +11,8 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        CreateMap<CreateInsurance, Insurance>();
+        CreateMap<CreateInsurance, Insurance>().ForMember(dest => dest.Coverages, opt => opt.Ignore());
+
         CreateMap<Insurance, CreateInsuranceResponse>();
         CreateMap<Insurance, GetInsuranceResponse>();
 

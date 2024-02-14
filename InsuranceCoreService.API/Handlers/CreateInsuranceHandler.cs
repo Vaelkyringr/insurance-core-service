@@ -11,10 +11,8 @@ public class CreateInsuranceHandler(IInsuranceRepository insuranceRepository, IC
     {
         var coverages = await coverageRepository.GetCoveragesByIdsAsync(request.Coverages);
         var insurance = mapper.Map<Insurance>(request);
-
-        //if (coverage != null)
-        //  insurance.Coverages = new List<Coverage> { coverage };
-
+        insurance.Coverages = coverages.ToList();
+        
         var result = await insuranceRepository.CreateInsuranceAsync(insurance);
 
         return mapper.Map<CreateInsuranceResponse>(result);
