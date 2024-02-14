@@ -27,7 +27,7 @@ public class InsuranceDbContext : DbContext
 
         modelBuilder.Entity<Coverage>().ToTable("Coverages").HasKey(c => c.Id);
         modelBuilder.Entity<Coverage>().Property(p => p.Id).ValueGeneratedOnAdd();
-        modelBuilder.Entity<Coverage>().Property(i => i.BaseAmount).HasColumnType("decimal(18,4)");
+        modelBuilder.Entity<Coverage>().Property(i => i.YearlyBaseAmount).HasColumnType("decimal(18,4)");
 
         base.OnModelCreating(modelBuilder);
     }

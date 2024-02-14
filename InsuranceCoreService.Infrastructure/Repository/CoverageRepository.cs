@@ -5,9 +5,11 @@ namespace InsuranceCoreService.Infrastructure.Repository;
 
 public class CoverageRepository(InsuranceDbContext dbContext) : Repository<Coverage>(dbContext), ICoverageRepository
 {
-    public async Task<Coverage?> GetCoverageByIdAsync(int coverageId)
+    public async Task<IEnumerable<Coverage>> GetCoveragesByIdsAsync(List<int> ids)
     {
-        return await GetByIdAsync(coverageId);
+        return await DbContext.Coverages
+            .Where(c => ids.Contains(c.Id))
+            .ToListAsync();
     }
 
     public async Task<IEnumerable<Coverage>> GetCoveragesAsync(int pageIndex, int pageSize)

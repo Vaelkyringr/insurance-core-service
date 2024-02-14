@@ -9,11 +9,11 @@ public class CreateInsuranceHandler(IInsuranceRepository insuranceRepository, IC
 {
     public async Task<CreateInsuranceResponse> Handle(CreateInsurance request, CancellationToken cancellationToken)
     {
-        var coverage = await coverageRepository.GetCoverageByIdAsync(request.CoverageId);
+        var coverages = await coverageRepository.GetCoveragesByIdsAsync(request.Coverages);
         var insurance = mapper.Map<Insurance>(request);
 
-        if (coverage != null)
-            insurance.Coverages = new List<Coverage> { coverage };
+        //if (coverage != null)
+        //  insurance.Coverages = new List<Coverage> { coverage };
 
         var result = await insuranceRepository.CreateInsuranceAsync(insurance);
 

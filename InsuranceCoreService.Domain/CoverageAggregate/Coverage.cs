@@ -8,7 +8,7 @@ public class Coverage : EntityBase
 
     public string Name { get; init; } = null!;
 
-    public decimal BaseAmount { get; init; }
+    public decimal YearlyBaseAmount { get; init; }
 
     public ICollection<Insurance> Insurances { get; init; } = null!;
 }

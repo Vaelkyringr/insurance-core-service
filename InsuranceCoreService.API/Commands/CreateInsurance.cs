@@ -21,5 +21,5 @@ public class CreateInsurance : IRequest<CreateInsuranceResponse>
     public DateTime EndPeriod { get; set; }
 
     [Required(ErrorMessage = "Coverage is required")]
-    public int CoverageId { get; set; }
+    public List<int> Coverages { get; set; } = null!;
 }

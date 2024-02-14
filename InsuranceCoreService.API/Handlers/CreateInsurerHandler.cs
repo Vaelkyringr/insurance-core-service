@@ -4,22 +4,13 @@ using InsuranceCoreService.Domain.InsurerAggregate;
 
 namespace InsuranceCoreService.API.Handlers;
 
-public class CreateInsurerHandler : IRequestHandler<CreateInsurer, CreateInsurerResponse>
+public class CreateInsurerHandler(IInsurerRepository repository, IMapper mapper) : IRequestHandler<CreateInsurer, CreateInsurerResponse>
 {
-    private readonly IInsurerRepository _repository;
-    private readonly IMapper _mapper;
-
-    public CreateInsurerHandler(IInsurerRepository repository, IMapper mapper)
-    {
-        _repository = repository;
-        _mapper = mapper;
-    }
-
     public async Task<CreateInsurerResponse> Handle(CreateInsurer request, CancellationToken cancellationToken)
     {
-        var insurer = _mapper.Map<Insurer>(request);
-        var result = await _repository.CreateInsurerAsync(insurer);
+        var insurer = mapper.Map<Insurer>(request);
+        var result = await repository.CreateInsurerAsync(insurer);
 
-        return _mapper.Map<CreateInsurerResponse>(result);
+        return mapper.Map<CreateInsurerResponse>(result);
     }
 }
