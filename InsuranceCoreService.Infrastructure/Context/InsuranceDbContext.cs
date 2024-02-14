@@ -14,13 +14,11 @@ public class InsuranceDbContext : DbContext
     {
         modelBuilder.Entity<Insurance>().ToTable("Insurances").HasKey(i => i.Id);
         modelBuilder.Entity<Insurance>().Property(p => p.Id).ValueGeneratedOnAdd();
+        modelBuilder.Entity<Insurance>().Property(i => i.YearlyPremium).HasColumnType("decimal(18,4)");
         modelBuilder.Entity<Insurance>()
             .HasOne(i => i.Insurer)
             .WithMany(i => i.Insurances)
             .HasForeignKey(i => i.InsurerId);
-        modelBuilder.Entity<Insurance>()
-            .Property(i => i.YearlyPremium)
-            .HasColumnType("decimal(18,4)");
 
         modelBuilder.Entity<Insurer>().ToTable("Insurers").HasKey(i => i.Id);
         modelBuilder.Entity<Insurer>().Property(p => p.Id).ValueGeneratedOnAdd();
@@ -36,6 +34,10 @@ public class InsuranceDbContext : DbContext
             .HasOne(ic => ic.Coverage)
             .WithMany(c => c.InsuranceCoverages)
             .HasForeignKey(ic => ic.CoverageId);
+
+        modelBuilder.Entity<Coverage>().ToTable("Coverages").HasKey(c => c.Id);
+        modelBuilder.Entity<Coverage>().Property(p => p.Id).ValueGeneratedOnAdd();
+        modelBuilder.Entity<Coverage>().Property(i => i.BaseAmount).HasColumnType("decimal(18,4)");
 
         base.OnModelCreating(modelBuilder);
     }

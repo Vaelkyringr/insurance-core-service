@@ -1,6 +1,7 @@
 ﻿using InsuranceCoreService.API.Commands;
 using InsuranceCoreService.API.Dtos;
 using InsuranceCoreService.API.Responses;
+using InsuranceCoreService.Domain.CoverageAggregate;
 using InsuranceCoreService.Domain.InsuranceAggregate;
 using InsuranceCoreService.Domain.InsurerAggregate;
 
@@ -19,5 +20,7 @@ public class MappingProfile : Profile
         CreateMap<Insurer, GetInsurersResponse>();
         CreateMap<Insurer, CreateInsurerResponse>();
         CreateMap<CreateInsurerResponse, Insurer>();
+
+        CreateMap<Coverage, CoverageDto>();
     }
 };
