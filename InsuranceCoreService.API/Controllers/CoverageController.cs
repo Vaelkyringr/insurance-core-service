@@ -1,5 +1,4 @@
-﻿using InsuranceCoreService.API.Commands;
-using InsuranceCoreService.API.Queries;
+﻿using InsuranceCoreService.API.Queries;
 using InsuranceCoreService.API.Responses;
 
 namespace InsuranceCoreService.API.Controllers;
@@ -14,11 +13,5 @@ public class CoverageController(IMediator mediator, ILogger<InsuranceController>
     {
         var result = await mediator.Send(query);
         return Ok(result);
-    }
-
-    [HttpPost("AddCoveragesToInsuranceAsync")]
-    public async Task<IActionResult> AddCoveragesToInsuranceAsync([FromBody] CreateInsurance command)
-    {
-        return Ok();
     }
 }
