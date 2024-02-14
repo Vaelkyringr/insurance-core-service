@@ -8,7 +8,6 @@ namespace InsuranceCoreService.API.Controllers;
 public class CoverageController(IMediator mediator, ILogger<InsuranceController> logger) : ControllerBase
 {
     [HttpGet("GetAllCoveragesAsync")]
-    [HttpGet("GetInsuranceByIdAsync")]
     [ProducesResponseType<GetCoveragesResponse>(StatusCodes.Status200OK)]
     [ProducesResponseType<GetCoveragesResponse>(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> GetAllCoveragesAsync([FromQuery] GetCoverages query)
