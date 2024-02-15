@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using InsuranceCoreService.API.CQRS.Responses;
+﻿using InsuranceCoreService.API.CQRS.Responses;
 
 namespace InsuranceCoreService.API.CQRS.Queries;
 
