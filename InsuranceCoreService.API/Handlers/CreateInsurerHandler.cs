@@ -9,6 +9,8 @@ public class CreateInsurerHandler(IInsurerRepository repository, IMapper mapper)
     public async Task<CreateInsurerResponse> Handle(CreateInsurer request, CancellationToken cancellationToken)
     {
         var insurer = mapper.Map<Insurer>(request);
+        insurer.OrganizationNumber = new OrganizationNumber(request.OrganizationNumber);
+
         var result = await repository.CreateInsurerAsync(insurer);
 
         return mapper.Map<CreateInsurerResponse>(result);

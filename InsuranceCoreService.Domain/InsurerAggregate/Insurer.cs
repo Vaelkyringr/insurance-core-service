@@ -7,7 +7,7 @@ public class Insurer : EntityBase
 {
     public string Name { get; init; } = null!;
 
-    public string OrganizationNumber { get; init; } = null!;
+    public OrganizationNumber OrganizationNumber { get; set; } = null!;
 
     public string Address { get; init; } = null!;
 

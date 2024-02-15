@@ -16,7 +16,7 @@ public class MappingProfile : Profile
         CreateMap<Insurance, CreateInsuranceResponse>();
         CreateMap<Insurance, GetInsuranceResponse>();
 
-        CreateMap<CreateInsurer, Insurer>();
+        CreateMap<CreateInsurer, Insurer>().ForMember(dest => dest.OrganizationNumber, opt => opt.Ignore());
         CreateMap<Insurer, InsurerDto>();
         CreateMap<Insurer, GetInsurersResponse>();
         CreateMap<Insurer, CreateInsurerResponse>();
