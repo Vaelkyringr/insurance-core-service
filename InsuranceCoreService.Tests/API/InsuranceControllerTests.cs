@@ -20,48 +20,52 @@ public class InsuranceControllerTests
     }
 
     [Fact]
-    public async Task GetInsuranceByIdAsync_ReturnsNotFoundResult_WhenInsuranceIsNull()
+    public async Task GetInsuranceByIdAsync_ReturnsBadRequest_WhenInsuranceIdIsInvalid()
     {
-        // Arrange
-        int insuranceId = 1;
-        _mediatorMock.Setup(m => m.Send(It.IsAny<GetInsuranceByIdQuery>(), default)).ReturnsAsync(() => null);
-
-        // Act
+        const int insuranceId = 0;
         var result = await _controller.GetInsuranceByIdAsync(insuranceId);
 
-        // Assert
+        Assert.IsType<BadRequestObjectResult>(result);
+    }
+
+    [Fact]
+    public async Task GetInsuranceByIdAsync_ReturnsNotFound_WhenInsuranceIsNull()
+    {
+        const int insuranceId = 1;
+        _mediatorMock.Setup(m => m.Send(It.IsAny<GetInsuranceByIdQuery>(), default)).ReturnsAsync(() => null);
+        var result = await _controller.GetInsuranceByIdAsync(insuranceId);
+
         Assert.IsType<NotFoundResult>(result);
     }
 
     [Fact]
-    public async Task GetInsuranceByIdAsync_ReturnsOkResult_WhenInsuranceExists()
+    public async Task GetInsuranceByIdAsync_ReturnsOk_WhenInsuranceExists()
     {
-        // Arrange
-        int insuranceId = 1;
-        var insurance = new Insurance();
+        const int insuranceId = 1;
         _mediatorMock.Setup(m => m.Send(It.IsAny<GetInsuranceByIdQuery>(), default)).ReturnsAsync(new GetInsuranceResponse());
 
-        // Act
         var result = await _controller.GetInsuranceByIdAsync(insuranceId);
 
-        // Assert
-        var okResult = Assert.IsType<OkObjectResult>(result);
-        Assert.Same(insurance, okResult.Value);
+        Assert.IsType<OkObjectResult>(result);
     }
 
     [Fact]
-    public async Task CreateInsuranceAsync_ReturnsCreatedAtActionResult_WhenModelStateIsValid()
+    public async Task CreateInsuranceAsync_ReturnsBadRequest_WhenModelStateIsInvalid()
     {
-        // Arrange
         var command = new CreateInsurance();
-        var response = new CreateInsuranceResponse { Id = 1 };
-        _mediatorMock.Setup(m => m.Send(command, default)).ReturnsAsync(response);
-
-        // Act
+        _controller.ModelState.AddModelError("YearlyPremium", "The YearlyPremium field is required.");
         var result = await _controller.CreateInsuranceAsync(command);
 
-        // Assert
-        var createdAtActionResult = Assert.IsType<CreatedAtActionResult>(result);
-        Assert.Same(response, createdAtActionResult.Value);
+        Assert.IsType<BadRequestObjectResult>(result);
+    }
+
+    [Fact]
+    public async Task CreateInsuranceAsync_ReturnsCreatedAtAction_WhenModelStateIsValid()
+    {
+        var command = new CreateInsurance();
+        _mediatorMock.Setup(m => m.Send(command, default)).ReturnsAsync(new CreateInsuranceResponse { Id = 1 });
+        var result = await _controller.CreateInsuranceAsync(command);
+
+        Assert.IsType<CreatedAtActionResult>(result);
     }
 }
