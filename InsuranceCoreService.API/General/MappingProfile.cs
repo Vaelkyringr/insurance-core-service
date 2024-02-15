@@ -23,13 +23,11 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.OrganizationNumber, opt => opt.Ignore());
         CreateMap<Insurer, InsurerDto>()
             .ForMember(dest => dest.OrganizationNumber, opt => opt.MapFrom(x => x.OrganizationNumber.Number));
-
         CreateMap<Insurer, GetInsurersResponse>();
+        CreateMap<Insurer, CreateInsurerResponse>()
+            .ForMember(dest => dest.OrganizationNumber, opt => opt.MapFrom(x => x.OrganizationNumber.Number));
 
-
-        CreateMap<Insurer, CreateInsurerResponse>();
         CreateMap<CreateInsurerResponse, Insurer>();
-
         CreateMap<Coverage, CoverageDto>();
     }
 };
