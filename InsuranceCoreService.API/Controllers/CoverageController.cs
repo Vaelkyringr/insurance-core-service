@@ -1,6 +1,5 @@
 ﻿using InsuranceCoreService.API.Queries;
 using InsuranceCoreService.API.Responses;
-using InsuranceCoreService.Domain.InsuranceAggregate;
 
 namespace InsuranceCoreService.API.Controllers;
 [Route("api/[controller]")]

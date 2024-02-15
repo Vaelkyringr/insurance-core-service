@@ -20,10 +20,12 @@ public class InsuranceControllerTests
     }
 
     [Fact]
-    public async Task GetInsuranceByIdAsync_ReturnsBadRequest_WhenInsuranceIdIsInvalid()
+    public async Task GetInsuranceByIdAsync_ReturnsBadRequest_WhenModelStateIsInvalid()
     {
-        const int insuranceId = 0;
-        var result = await _controller.GetInsuranceByIdAsync(insuranceId);
+        var query = new GetInsuranceByIdQuery { Id = 1 };
+        _controller.ModelState.AddModelError("Id", "Id is required");
+
+        var result = await _controller.GetInsuranceByIdAsync(query);
 
         Assert.IsType<BadRequestObjectResult>(result);
     }
@@ -31,9 +33,9 @@ public class InsuranceControllerTests
     [Fact]
     public async Task GetInsuranceByIdAsync_ReturnsNotFound_WhenInsuranceIsNull()
     {
-        const int insuranceId = 1;
+        var query = new GetInsuranceByIdQuery { Id = 1 };
         _mediatorMock.Setup(m => m.Send(It.IsAny<GetInsuranceByIdQuery>(), default)).ReturnsAsync(() => null);
-        var result = await _controller.GetInsuranceByIdAsync(insuranceId);
+        var result = await _controller.GetInsuranceByIdAsync(query);
 
         Assert.IsType<NotFoundResult>(result);
     }
@@ -41,10 +43,10 @@ public class InsuranceControllerTests
     [Fact]
     public async Task GetInsuranceByIdAsync_ReturnsOk_WhenInsuranceExists()
     {
-        const int insuranceId = 1;
+        var query = new GetInsuranceByIdQuery { Id = 1 };
         _mediatorMock.Setup(m => m.Send(It.IsAny<GetInsuranceByIdQuery>(), default)).ReturnsAsync(new GetInsuranceResponse());
 
-        var result = await _controller.GetInsuranceByIdAsync(insuranceId);
+        var result = await _controller.GetInsuranceByIdAsync(query);
 
         Assert.IsType<OkObjectResult>(result);
     }

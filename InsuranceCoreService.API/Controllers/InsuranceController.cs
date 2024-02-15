@@ -12,22 +12,20 @@ public class InsuranceController(IMediator mediator, ILogger<InsuranceController
     [ProducesResponseType<GetInsuranceResponse>(StatusCodes.Status200OK)]
     [ProducesResponseType<GetInsuranceResponse>(StatusCodes.Status404NotFound)]
     [ProducesResponseType<GetInsuranceResponse>(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> GetInsuranceByIdAsync(int insuranceId)
+    public async Task<IActionResult> GetInsuranceByIdAsync([FromQuery] GetInsuranceByIdQuery query)
     {
-        if (insuranceId <= 0)
+        if (!ModelState.IsValid)
         {
-            ModelState.AddModelError(nameof(insuranceId), "InsuranceId must be greater than 0.");
+            logger.LogInformation("{Errors}", ModelState.Values.SelectMany(v => v.Errors));
+            return BadRequest(ModelState);
         }
 
-        if (ModelState.IsValid)
-        {
-            var insurance = await mediator.Send(new GetInsuranceByIdQuery { Id = insuranceId });
-            return insurance == null ? NotFound() : Ok(insurance);
-        }
+        var insurance = await mediator.Send(query);
+        
+        if (insurance == null)
+            return NotFound();
 
-        logger.LogInformation("{Errors}", ModelState.Values.SelectMany(v => v.Errors));
-
-        return BadRequest(ModelState);
+        return Ok(insurance);
     }
 
     [HttpPost("CreateInsuranceAsync")]
