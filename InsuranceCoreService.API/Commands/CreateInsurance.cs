@@ -5,9 +5,6 @@ namespace InsuranceCoreService.API.Commands;
 
 public class CreateInsurance : IRequest<CreateInsuranceResponse>
 {
-    [Required(ErrorMessage = "Insurance number is required")]
-    public string InsuranceNumber { get; set; } = null!;
-
     [Required(ErrorMessage = "YearlyPremium is required")]
     public decimal YearlyPremium { get; set; } = 0;
 

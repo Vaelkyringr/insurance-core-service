@@ -17,6 +17,8 @@ public class InsuranceDbContext : DbContext
         modelBuilder.Entity<Insurance>().Property(i => i.YearlyPremium).HasColumnType("decimal(18,4)");
         modelBuilder.Entity<Insurance>().HasOne(i => i.Insurer).WithMany(i => i.Insurances).HasForeignKey(i => i.InsurerId);
         modelBuilder.Entity<Insurance>().HasMany(i => i.Coverages).WithMany(i => i.Insurances).UsingEntity(x => x.ToTable("InsuranceCoverage"));
+        modelBuilder.Entity<Insurance>().OwnsOne(i => i.InsuranceNumber)
+            .Property(i => i.Number).HasColumnName("InsuranceNumber");
 
         modelBuilder.Entity<Insurer>().ToTable("Insurers").HasKey(i => i.Id);
         modelBuilder.Entity<Insurer>().Property(p => p.Id).ValueGeneratedOnAdd();

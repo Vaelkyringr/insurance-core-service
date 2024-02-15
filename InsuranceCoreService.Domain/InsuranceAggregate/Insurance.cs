@@ -8,7 +8,7 @@ public class Insurance : EntityBase
 {
     public Insurance() { }
 
-    public string InsuranceNumber { get; init; } = null!;
+    public InsuranceNumber InsuranceNumber { get; set; } = null!;
     public decimal YearlyPremium { get; set; }
     public int InsurerId { get; init; }
     public DateTime StartPeriod { get; init; }
