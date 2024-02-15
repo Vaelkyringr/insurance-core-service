@@ -9,7 +9,8 @@ public class Insurance : EntityBase
     public Insurance() { }
 
     public InsuranceNumber InsuranceNumber { get; set; } = null!;
-    public decimal YearlyPremium { get; set; }
+
+    public YearlyPremium YearlyPremium { get; set; } = null!;
     public int InsurerId { get; init; }
     public DateTime StartPeriod { get; init; }
     public DateTime EndPeriod { get; init; }
@@ -20,10 +21,5 @@ public class Insurance : EntityBase
     public void AddCoverage(Coverage coverage)
     {
         Coverages.Add(coverage);
-    }
-
-    public void CalculateYearlyPremium(decimal amount)
-    {
-        YearlyPremium += amount;
     }
 }

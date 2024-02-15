@@ -1,16 +1,23 @@
 ﻿using InsuranceCoreService.API.Queries;
 using InsuranceCoreService.API.Responses;
+using InsuranceCoreService.Domain.InsuranceAggregate;
 
 namespace InsuranceCoreService.API.Controllers;
 [Route("api/[controller]")]
 [ApiController]
-public class CoverageController(IMediator mediator, ILogger<InsuranceController> logger) : ControllerBase
+public class CoverageController(IMediator mediator, ILogger<CoverageController> logger) : ControllerBase
 {
     [HttpGet("GetAllCoveragesAsync")]
     [ProducesResponseType<GetCoveragesResponse>(StatusCodes.Status200OK)]
     [ProducesResponseType<GetCoveragesResponse>(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> GetAllCoveragesAsync([FromQuery] GetCoverages query)
     {
+        if (!ModelState.IsValid)
+        {
+            logger.LogInformation("{Errors}", ModelState.Values.SelectMany(v => v.Errors));
+            return BadRequest(ModelState);
+        }
+
         var result = await mediator.Send(query);
         return Ok(result);
     }

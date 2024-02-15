@@ -19,6 +19,6 @@ public class InsuranceNumber : ValueObject
 
     protected override IEnumerable<object> GetAtomicValues()
     {
-        throw new NotImplementedException();
+        yield return Number;
     }
 }

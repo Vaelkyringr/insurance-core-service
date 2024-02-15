@@ -1,43 +1,67 @@
+using InsuranceCoreService.API.Commands;
 using InsuranceCoreService.API.Controllers;
 using InsuranceCoreService.API.Queries;
 using InsuranceCoreService.API.Responses;
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Moq;
+using InsuranceCoreService.Domain.InsuranceAggregate;
 
 namespace InsuranceCoreService.Tests.API;
 
 public class InsuranceControllerTests
 {
-    [Fact]
-    public async Task GetInsuranceByIdAsync_ReturnsNotFound_WhenInsuranceIsNull()
-    {
-        const int insuranceId = 1;
-        var mediator = new Mock<IMediator>();
-        var logger = new Mock<ILogger<InsuranceController>>();
-        mediator.Setup(m => m.Send(It.IsAny<GetInsuranceByIdQuery>(), default)).ReturnsAsync(() => null!);
-        
-        var controller = new InsuranceController(mediator.Object, logger.Object);
-        var result = await controller.GetInsuranceByIdAsync(insuranceId);
+    private readonly Mock<IMediator> _mediatorMock;
+    private readonly Mock<ILogger<InsuranceController>> _loggerMock;
+    private readonly InsuranceController _controller;
 
+    public InsuranceControllerTests()
+    {
+        _mediatorMock = new Mock<IMediator>();
+        _loggerMock = new Mock<ILogger<InsuranceController>>();
+        _controller = new InsuranceController(_mediatorMock.Object, _loggerMock.Object);
+    }
+
+    [Fact]
+    public async Task GetInsuranceByIdAsync_ReturnsNotFoundResult_WhenInsuranceIsNull()
+    {
+        // Arrange
+        int insuranceId = 1;
+        _mediatorMock.Setup(m => m.Send(It.IsAny<GetInsuranceByIdQuery>(), default)).ReturnsAsync(() => null);
+
+        // Act
+        var result = await _controller.GetInsuranceByIdAsync(insuranceId);
+
+        // Assert
         Assert.IsType<NotFoundResult>(result);
     }
 
     [Fact]
-    public async Task GetInsuranceByIdAsync_ReturnsOk_WhenInsuranceExists()
+    public async Task GetInsuranceByIdAsync_ReturnsOkResult_WhenInsuranceExists()
     {
-        const int insuranceId = 1;
-        var mediator = new Mock<IMediator>();
-        var logger = new Mock<ILogger<InsuranceController>>();
-        mediator.Setup(m => m.Send(It.IsAny<GetInsuranceByIdQuery>(), default)).ReturnsAsync(new GetInsuranceResponse {Id = insuranceId});
+        // Arrange
+        int insuranceId = 1;
+        var insurance = new Insurance();
+        _mediatorMock.Setup(m => m.Send(It.IsAny<GetInsuranceByIdQuery>(), default)).ReturnsAsync(new GetInsuranceResponse());
 
-        var controller = new InsuranceController(mediator.Object, logger.Object);
-        var result = await controller.GetInsuranceByIdAsync(insuranceId);
+        // Act
+        var result = await _controller.GetInsuranceByIdAsync(insuranceId);
 
-        var ok = Assert.IsType<OkObjectResult>(result);
-        var response = Assert.IsType<GetInsuranceResponse>(ok.Value);
+        // Assert
+        var okResult = Assert.IsType<OkObjectResult>(result);
+        Assert.Same(insurance, okResult.Value);
+    }
 
-        Assert.Equal(1, response.Id);
+    [Fact]
+    public async Task CreateInsuranceAsync_ReturnsCreatedAtActionResult_WhenModelStateIsValid()
+    {
+        // Arrange
+        var command = new CreateInsurance();
+        var response = new CreateInsuranceResponse { Id = 1 };
+        _mediatorMock.Setup(m => m.Send(command, default)).ReturnsAsync(response);
+
+        // Act
+        var result = await _controller.CreateInsuranceAsync(command);
+
+        // Assert
+        var createdAtActionResult = Assert.IsType<CreatedAtActionResult>(result);
+        Assert.Same(response, createdAtActionResult.Value);
     }
 }
