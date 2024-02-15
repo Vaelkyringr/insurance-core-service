@@ -1,4 +1,4 @@
-﻿namespace InsuranceCoreService.Domain;
+﻿namespace InsuranceCoreService.Domain.SeedWork;
 
 public abstract class EntityBase
 {

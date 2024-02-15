@@ -1,7 +1,8 @@
-﻿namespace InsuranceCoreService.Domain.InsuranceAggregate;
+﻿using InsuranceCoreService.Domain.CoverageAggregate;
+using InsuranceCoreService.Domain.InsurerAggregate;
+using InsuranceCoreService.Domain.SeedWork;
 
-using CoverageAggregate;
-using InsurerAggregate;
+namespace InsuranceCoreService.Domain.InsuranceAggregate;
 
 public class Insurance : EntityBase
 {

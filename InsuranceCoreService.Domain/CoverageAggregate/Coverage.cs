@@ -1,4 +1,5 @@
 ﻿using InsuranceCoreService.Domain.InsuranceAggregate;
+using InsuranceCoreService.Domain.SeedWork;
 
 namespace InsuranceCoreService.Domain.CoverageAggregate;
 
