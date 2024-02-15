@@ -11,8 +11,14 @@ public class CreateInsuranceHandler(IInsuranceRepository insuranceRepository, IC
     {
         var coverages = await coverageRepository.GetCoveragesByIdsAsync(request.Coverages);
         var insurance = mapper.Map<Insurance>(request);
-        insurance.Coverages = coverages.ToList();
-        
+
+        // Add coverages & calculate yearly premium
+        foreach (var coverage in coverages)
+        {
+            insurance.AddCoverage(coverage);
+            insurance.CalculateYearlyPremium(coverage.YearlyBaseAmount);
+        }
+
         var result = await insuranceRepository.CreateInsuranceAsync(insurance);
 
         return mapper.Map<CreateInsuranceResponse>(result);
