@@ -1,6 +1,6 @@
-﻿using InsuranceCoreService.API.Commands;
+﻿using InsuranceCoreService.API.CQRS.Commands;
+using InsuranceCoreService.API.CQRS.Responses;
 using InsuranceCoreService.API.Dtos;
-using InsuranceCoreService.API.Responses;
 using InsuranceCoreService.Domain.CoverageAggregate;
 using InsuranceCoreService.Domain.InsuranceAggregate;
 using InsuranceCoreService.Domain.InsurerAggregate;
@@ -19,9 +19,14 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.InsuranceNumber, opt => opt.MapFrom(x => x.InsuranceNumber.Number));
         CreateMap<Insurance, GetInsuranceResponse>();
 
-        CreateMap<CreateInsurer, Insurer>().ForMember(dest => dest.OrganizationNumber, opt => opt.Ignore());
-        CreateMap<Insurer, InsurerDto>();
+        CreateMap<CreateInsurer, Insurer>()
+            .ForMember(dest => dest.OrganizationNumber, opt => opt.Ignore());
+        CreateMap<Insurer, InsurerDto>()
+            .ForMember(dest => dest.OrganizationNumber, opt => opt.MapFrom(x => x.OrganizationNumber.Number));
+
         CreateMap<Insurer, GetInsurersResponse>();
+
+
         CreateMap<Insurer, CreateInsurerResponse>();
         CreateMap<CreateInsurerResponse, Insurer>();
 

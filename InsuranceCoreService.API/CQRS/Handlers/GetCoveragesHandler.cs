@@ -1,9 +1,9 @@
-﻿using InsuranceCoreService.API.Dtos;
-using InsuranceCoreService.API.Queries;
-using InsuranceCoreService.API.Responses;
+﻿using InsuranceCoreService.API.CQRS.Queries;
+using InsuranceCoreService.API.CQRS.Responses;
+using InsuranceCoreService.API.Dtos;
 using InsuranceCoreService.Domain.CoverageAggregate;
 
-namespace InsuranceCoreService.API.Handlers;
+namespace InsuranceCoreService.API.CQRS.Handlers;
 
 public class GetCoveragesHandler(ICoverageRepository repository, IMapper mapper) : IRequestHandler<GetCoverages, GetCoveragesResponse>
 {

@@ -1,5 +1,5 @@
-﻿using InsuranceCoreService.API.Queries;
-using InsuranceCoreService.API.Responses;
+﻿using InsuranceCoreService.API.CQRS.Queries;
+using InsuranceCoreService.API.CQRS.Responses;
 
 namespace InsuranceCoreService.API.Controllers;
 [Route("api/[controller]")]

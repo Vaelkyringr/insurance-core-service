@@ -1,6 +1,6 @@
 ﻿using InsuranceCoreService.API.Dtos;
 
-namespace InsuranceCoreService.API.Responses;
+namespace InsuranceCoreService.API.CQRS.Responses;
 
 public class GetCoveragesResponse
 {

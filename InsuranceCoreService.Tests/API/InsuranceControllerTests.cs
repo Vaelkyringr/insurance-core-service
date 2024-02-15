@@ -1,8 +1,7 @@
 using InsuranceCoreService.API.Commands;
 using InsuranceCoreService.API.Controllers;
-using InsuranceCoreService.API.Queries;
+using InsuranceCoreService.API.CQRS.Queries;
 using InsuranceCoreService.API.Responses;
-using InsuranceCoreService.Domain.InsuranceAggregate;
 
 namespace InsuranceCoreService.Tests.API;
 

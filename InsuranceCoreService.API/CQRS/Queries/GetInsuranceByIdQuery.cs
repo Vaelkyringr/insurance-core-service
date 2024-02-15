@@ -1,7 +1,7 @@
-﻿using InsuranceCoreService.API.Responses;
+﻿using InsuranceCoreService.API.CQRS.Responses;
 using System.ComponentModel.DataAnnotations;
 
-namespace InsuranceCoreService.API.Queries;
+namespace InsuranceCoreService.API.CQRS.Queries;
 
 public class GetInsuranceByIdQuery : IRequest<GetInsuranceResponse>
 {

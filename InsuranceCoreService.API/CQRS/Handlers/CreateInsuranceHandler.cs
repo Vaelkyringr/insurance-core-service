@@ -1,9 +1,9 @@
-﻿using InsuranceCoreService.API.Commands;
-using InsuranceCoreService.API.Responses;
+﻿using InsuranceCoreService.API.CQRS.Commands;
+using InsuranceCoreService.API.CQRS.Responses;
 using InsuranceCoreService.Domain.CoverageAggregate;
 using InsuranceCoreService.Domain.InsuranceAggregate;
 
-namespace InsuranceCoreService.API.Handlers;
+namespace InsuranceCoreService.API.CQRS.Handlers;
 
 public class CreateInsuranceHandler(IInsuranceRepository insuranceRepository, ICoverageRepository coverageRepository, IMapper mapper) : IRequestHandler<CreateInsurance, CreateInsuranceResponse>
 {

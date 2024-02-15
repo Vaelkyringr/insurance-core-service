@@ -1,9 +1,9 @@
-﻿using InsuranceCoreService.API.Responses;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using InsuranceCoreService.API.CQRS.Responses;
 
-namespace InsuranceCoreService.API.Queries;
+namespace InsuranceCoreService.API.CQRS.Queries;
 
-public class GetCoverages : IRequest<GetCoveragesResponse>
+public class GetInsurers : IRequest<GetInsurersResponse>
 {
     [Required(ErrorMessage = "PageIndex is required")]
     [Range(1, int.MaxValue, ErrorMessage = "PageIndex must be greater than 0")]
