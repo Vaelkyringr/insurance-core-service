@@ -5,3 +5,4 @@ Platform details
 - .NET 8
 - Docker
 - CQRS
+- AMQP (RabbitMQ)
