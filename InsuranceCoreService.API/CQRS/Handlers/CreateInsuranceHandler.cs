@@ -10,14 +10,14 @@ namespace InsuranceCoreService.API.CQRS.Handlers;
 public class CreateInsuranceHandler(
     IInsuranceRepository insuranceRepository,
     ICoverageRepository coverageRepository,
-    IDomainEventPublisher domainEventPublisher,
+    IMessagePublisherService domainEventPublisher,
     IMapper mapper) :
     IRequestHandler<CreateInsurance, CreateInsuranceResponse>
 {
     public async Task<CreateInsuranceResponse> Handle(CreateInsurance request, CancellationToken cancellationToken)
     {
-        var coverages = await coverageRepository.GetCoveragesByIdsAsync(request.Coverages);
         var insurance = mapper.Map<Insurance>(request);
+        var coverages = await coverageRepository.GetCoveragesByIdsAsync(request.Coverages);
 
         // Generate insurance number & premiums
         insurance.InsuranceNumber = new InsuranceNumber();
@@ -34,9 +34,8 @@ public class CreateInsuranceHandler(
 
         // Save insurance & publish event to queue
         var result = await insuranceRepository.CreateInsuranceAsync(insurance);
-
         var message = JsonConvert.SerializeObject(insurance);
-        domainEventPublisher.Publish("Insurance", message);
+        domainEventPublisher.Publish(message);
 
         return mapper.Map<CreateInsuranceResponse>(result);
     }

@@ -2,7 +2,7 @@
 
 namespace InsuranceCoreService.Infrastructure.Services;
 
-public interface IDomainEventPublisher
+public interface IMessagePublisherService
 {
-    void Publish(string queueName, string message);
+    void Publish(string message);
 }

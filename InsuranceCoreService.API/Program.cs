@@ -3,6 +3,7 @@ using InsuranceCoreService.Domain.InsurerAggregate;
 using InsuranceCoreService.Infrastructure.Repository;
 using System.Reflection;
 using InsuranceCoreService.Domain.CoverageAggregate;
+using InsuranceCoreService.Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IInsuranceRepository, InsuranceRepository>();
 builder.Services.AddScoped<IInsurerRepository, InsurerRepository>();
 builder.Services.AddScoped<ICoverageRepository, CoverageRepository>();
+builder.Services.AddScoped<IMessagePublisherService, MessagePublisherService>();
 
 var app = builder.Build();
 var mapperConfig = new MapperConfiguration(cfg => { cfg.AddProfile(new MappingProfile()); });
