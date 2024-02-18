@@ -1,9 +1,9 @@
 ﻿using InsuranceCoreService.API.CQRS.Commands;
 using InsuranceCoreService.API.CQRS.Responses;
-using InsuranceCoreService.Domain;
 using InsuranceCoreService.Domain.CoverageAggregate;
 using InsuranceCoreService.Domain.InsuranceAggregate;
 using InsuranceCoreService.Infrastructure.Services;
+using Newtonsoft.Json;
 
 namespace InsuranceCoreService.API.CQRS.Handlers;
 
@@ -34,14 +34,9 @@ public class CreateInsuranceHandler(
 
         // Save insurance & publish event to queue
         var result = await insuranceRepository.CreateInsuranceAsync(insurance);
-        insurance.AddDomainEvent(new OnInsuranceCreated(insurance));
 
-        foreach (var domainEvent in insurance.DomainEvents)
-        {
-            await domainEventPublisher.Publish(domainEvent);
-        }
-
-        insurance.ClearEvents();
+        var message = JsonConvert.SerializeObject(insurance);
+        domainEventPublisher.Publish("Insurance", message);
 
         return mapper.Map<CreateInsuranceResponse>(result);
     }
