@@ -1,4 +1,5 @@
 using InsuranceCoreService.API.Controllers;
+using InsuranceCoreService.API.CQRS.Commands;
 using InsuranceCoreService.API.CQRS.Queries;
 using InsuranceCoreService.API.CQRS.Responses;
 

@@ -4,7 +4,7 @@ namespace InsuranceCoreService.Infrastructure.Repository;
 
 public abstract class Repository<T>(InsuranceDbContext dbContext) : IRepository<T> where T : class
 {
-    protected readonly InsuranceDbContext DbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+    protected readonly InsuranceDbContext DbContext;
 
     public async Task<T?> GetByIdAsync(int id)
     {
