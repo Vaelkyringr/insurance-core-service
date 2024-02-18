@@ -3,14 +3,13 @@ using InsuranceCoreService.API.CQRS.Responses;
 using InsuranceCoreService.Domain.CoverageAggregate;
 using InsuranceCoreService.Domain.InsuranceAggregate;
 using InsuranceCoreService.Infrastructure.Services;
-using Newtonsoft.Json;
 
 namespace InsuranceCoreService.API.CQRS.Handlers;
 
 public class CreateInsuranceHandler(
     IInsuranceRepository insuranceRepository,
     ICoverageRepository coverageRepository,
-    IMessagePublisherService domainEventPublisher,
+    IMessagePublisherService publisherService,
     IMapper mapper) :
     IRequestHandler<CreateInsurance, CreateInsuranceResponse>
 {
@@ -35,7 +34,7 @@ public class CreateInsuranceHandler(
         // Save insurance & publish event to queue
         var result = await insuranceRepository.CreateInsuranceAsync(insurance);
         var message = JsonConvert.SerializeObject(insurance);
-        domainEventPublisher.Publish(message);
+        publisherService.Publish(message);
 
         return mapper.Map<CreateInsuranceResponse>(result);
     }
