@@ -33,7 +33,8 @@ public class CreateInsuranceHandler(
 
         // Save insurance & publish event to queue
         var result = await insuranceRepository.CreateInsuranceAsync(insurance);
-        var message = JsonConvert.SerializeObject(insurance);
+        var message = JsonConvert.SerializeObject(insurance, new JsonSerializerSettings() { ReferenceLoopHandling = ReferenceLoopHandling.Ignore });
+
         publisherService.Publish(message);
 
         return mapper.Map<CreateInsuranceResponse>(result);

@@ -7,7 +7,7 @@ public class CoverageRepository(InsuranceDbContext dbContext) : Repository<Cover
 {
     public async Task<IEnumerable<Coverage>> GetCoveragesByIdsAsync(List<int> ids)
     {
-        return await DbContext.Coverages
+        return await dbContext.Coverages
             .Where(c => ids.Contains(c.Id))
             .ToListAsync();
     }
