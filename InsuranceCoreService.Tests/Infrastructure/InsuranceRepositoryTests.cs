@@ -28,7 +28,7 @@ public class InsuranceRepositoryTests : IAsyncDisposable
                 .Create())
             .Create();
 
-        _context.Insurances.Add(insurance);
+        await _context.Insurances.AddAsync(insurance);
         await _context.SaveChangesAsync();
 
         var result = await _repository.GetInsuranceByIdAsync(insurance.Id);
