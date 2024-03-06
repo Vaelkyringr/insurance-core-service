@@ -5,35 +5,28 @@ using InsuranceCoreService.Infrastructure.Repository;
 
 namespace InsuranceCoreService.Tests.Infrastructure;
 
-public class InsuranceRepositoryTests
+public class InsuranceRepositoryTests : IAsyncDisposable
 {
     private readonly InsuranceDbContext _context;
     private readonly InsuranceRepository _repository;
+    private readonly Fixture _fixture = new();
 
     public InsuranceRepositoryTests()
     {
-        var options = new DbContextOptionsBuilder<InsuranceDbContext>()
-            .UseInMemoryDatabase(databaseName: "InsuranceTestDb")
-            .Options;
-
-        _context = new InsuranceDbContext(options);
+        _context = TestDbContextFactory.CreateNewContext();
         _repository = new InsuranceRepository(_context);
+        _fixture.FixCircularReference();
     }
-
 
     [Fact]
     public async Task GetInsuranceByIdAsync_ReturnsInsurance()
     {
-        var insurance = new Insurance
-        {
-            Id = 1,
-            Insurer = new Insurer
-            {
-                Name = "Insurer",
-                OrganizationNumber = new OrganizationNumber("1234567890"),
-                Address = "Street"
-            }
-        };
+        var insurance = _fixture.Build<Insurance>()
+            .With(i => i.Id, 1)
+            .With(i => i.Insurer, _fixture.Build<Insurer>()
+                .With(insurer => insurer.OrganizationNumber, new OrganizationNumber("1234567890"))
+                .Create())
+            .Create();
 
         _context.Insurances.Add(insurance);
         await _context.SaveChangesAsync();
@@ -41,6 +34,8 @@ public class InsuranceRepositoryTests
         var result = await _repository.GetInsuranceByIdAsync(insurance.Id);
 
         Assert.Equal(insurance, result);
+
+        await DisposeAsync();
     }
 
     [Fact]
@@ -51,7 +46,7 @@ public class InsuranceRepositoryTests
     }
 
     [Fact]
-    public async Task CreateInsuranceAsync_AddsInsuranceToDatabase()
+    public async Task CreateInsuranceAsync_CreatesInsurance()
     {
         var insurance = new Insurance { Id = 1 };
 
@@ -59,5 +54,13 @@ public class InsuranceRepositoryTests
 
         Assert.Equal(insurance, result);
         Assert.Contains(insurance, _context.Insurances);
+
+        await DisposeAsync();
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        await _context.Database.EnsureDeletedAsync();
+        await _context.DisposeAsync();
     }
 }

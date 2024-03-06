@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoFixture" Version="4.18.1" />
     <PackageReference Include="Bogus" Version="35.4.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
@@ -28,6 +29,10 @@
     <ProjectReference Include="..\InsuranceCoreService.API\InsuranceCoreService.API.csproj" />
     <ProjectReference Include="..\InsuranceCoreService.Domain\InsuranceCoreService.Domain.csproj" />
     <ProjectReference Include="..\InsuranceCoreService.Infrastructure\InsuranceCoreService.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Handlers\" />
   </ItemGroup>
 
 </Project>
