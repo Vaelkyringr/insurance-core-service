@@ -14,4 +14,9 @@ public class InsurerRepository(InsuranceDbContext dbContext) : Repository<Insure
     {
         return await GetAllAsync(pageIndex, pageSize);
     }
+
+    public async Task<Insurer?> GetInsurerByIdAsync(int id)
+    {
+        return await GetByIdAsync(id);
+    }
 }

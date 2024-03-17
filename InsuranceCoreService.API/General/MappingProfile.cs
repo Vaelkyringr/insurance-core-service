@@ -21,7 +21,12 @@ public class MappingProfile : Profile
         CreateMap<Insurance, GetInsuranceResponse>()
             .ForMember(dest => dest.YearlyPremium, opt => opt.MapFrom(x => x.YearlyPremium.Amount))
             .ForMember(dest => dest.InsuranceNumber, opt => opt.MapFrom(x => x.InsuranceNumber.Number));
-        
+
+        CreateMap<Insurance, InsuranceLetterDto>()
+            .ForMember(dest => dest.YearlyPremium, opt => opt.MapFrom(x => x.YearlyPremium.Amount))
+            .ForMember(dest => dest.InsuranceNumber, opt => opt.MapFrom(x => x.InsuranceNumber.Number))
+            .ForMember(dest => dest.Coverages, opt => opt.MapFrom(x => x.Coverages.Select(c => c.Name).ToList()));
+
         // Insurer
         CreateMap<CreateInsurer, Insurer>()
             .ForMember(dest => dest.OrganizationNumber, opt => opt.Ignore());
